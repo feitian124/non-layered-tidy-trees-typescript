@@ -138,7 +138,7 @@ function setRightThread(tree: Tree, i: number, sr: Tree, modsumsr: number) {
     tree.c[i].mser = tree.c[i - 1].mser;
 }
 
-function seperate(tree: Tree, i: number, ih: IYL) {
+function separate(tree: Tree, i: number, ih: IYL) {
     // Right contour node of left siblings and its sum of modifiers.
     let sr = tree.c[i - 1];
     let mssr = sr.mod;
@@ -204,8 +204,9 @@ function firstWalk(tree: Tree) {
     let ih = updateIYL(bottom(tree.c[0].el), 0);
     for (let i = 1; i < tree.cs; i++) {
         firstWalk(tree.c[i]);
+        // Store lowest vertical coordinate while extreme nodes still point in current subtree.
         const minY = bottom(tree.c[i].er);
-        seperate(tree, i, ih);
+        separate(tree, i, ih);
         ih = updateIYL(minY, i, ih);
     }
     positionRoot(tree);
