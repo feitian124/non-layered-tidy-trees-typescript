@@ -125,3 +125,5 @@ class Layout {
         return { result: treeData, boundingBox: box };
     }
 }
+
+export { Layout, BoundingBox };
