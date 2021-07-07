@@ -1,26 +1,30 @@
 {
   "name": "tree-layout",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A nice greeter",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --config jestconfig.json",
     "build": "tsc",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "prepare": "husky install"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["tree", "layout", "draw", "topology"],
+  "author": "feitian124@gmail.com",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^26.0.24",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "husky": "7.0.1",
+    "jest": "^27.0.6",
     "lint-staged": "11.0.0",
     "prettier": "^2.3.2",
+    "ts-jest": "^27.0.3",
     "typescript": "^4.3.5"
   },
   "lint-staged": {
