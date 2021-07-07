@@ -16,8 +16,8 @@ class Tree {
     change: number;
     tl?: Tree; // Left and right thread
     tr?: Tree;
-    el?: Tree; // Extreme left and right nodes
-    er?: Tree;
+    el: Tree; // Extreme left and right nodes
+    er: Tree;
     msel: number; // Sum of modifiers at the extreme nodes
     mser: number;
 
@@ -33,9 +33,17 @@ class Tree {
         this.mod = 0;
         this.shift = 0;
         this.change = 0;
-        //sum of modifiers at the extreme nodes
-        this.msel = 0;
-        this.mser = 0;
+
+        if (this.cs === 0) {
+            this.el = this;
+            this.er = this;
+            this.msel = this.mser = 0;
+        } else {
+            this.el = this.c[0].el;
+            this.msel = this.c[0].msel;
+            this.er = this.c[this.cs - 1].er;
+            this.mser = this.c[this.cs - 1].mser;
+        }
     }
 }
 
