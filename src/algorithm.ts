@@ -62,18 +62,18 @@ function bottom(tree: Tree) {
 class IYL {
     lowY: number;
     index: number;
-    next: IYL;
+    next?: IYL;
 
-    constructor(lowY: number, index: number, next: IYL) {
+    constructor(lowY: number, index: number, next?: IYL) {
         this.lowY = lowY;
         this.index = index;
         this.next = next;
     }
 }
 
-function updateIYL(minY: number, i: number, ih: IYL) {
+function updateIYL(minY: number, i: number, ih?: IYL) {
     // Remove siblings that are hidden by the new subtree.
-    while (ih !== null && minY >= ih.lowY) {
+    while (ih !== undefined && minY >= ih.lowY) {
         // Prepend the new subtree
         ih = ih.next;
     }
@@ -192,7 +192,8 @@ function firstWalk(tree: Tree) {
     }
 
     firstWalk(tree.c[0]);
-    let ih = updateIYL(bottom(tree.c[0].el), 0, null);
+    // Create siblings in contour minimal vertical coordinate and index list.
+    let ih = updateIYL(bottom(tree.c[0].el), 0);
     for (let i = 1; i < tree.cs; i++) {
         firstWalk(tree.c[i]);
         const minY = bottom(tree.c[i].er);
