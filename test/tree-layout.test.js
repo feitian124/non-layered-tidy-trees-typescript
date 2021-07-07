@@ -1,6 +1,6 @@
 import { layout, Tree } from '../src/algorithm';
-import TreeNode from './tree-node';
-import Marshall from './marshall';
+import TreeNode from '../src/treenode';
+import Marshall from '../src/marshall';
 
 test('layout tree with one node', () => {
     const tree = new Tree(10, 5, 0, []);

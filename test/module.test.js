@@ -1,5 +1,5 @@
 test('nonLayeredTidyTreeLayout exists', () => {
-    const { layout, Tree } = require('../dist/non-layered-tidy-tree-layout');
+    const { layout, Tree } = require('../lib/index');
     expect(layout).toBeTruthy();
     expect(Tree).toBeTruthy();
 });

@@ -1,9 +1,8 @@
-import { Tree, layout } from '../src/algorithm';
+import { Tree, layout } from './algorithm';
+import TreeNode from './treenode';
 
 export default {
-    convert(treeNode) {
-        if (treeNode === null) return null;
-
+    convert(treeNode: TreeNode): Tree {
         let children = [];
         for (let i = 0; i < treeNode.children.length; i++) {
             children[i] = this.convert(treeNode.children[i]);
@@ -12,14 +11,14 @@ export default {
         return new Tree(treeNode.width, treeNode.height, treeNode.y, children);
     },
 
-    convertBack(converted, root) {
+    convertBack(converted: Tree, root: TreeNode) {
         root.x = converted.x;
         for (let i = 0; i < converted.c.length; i++) {
             this.convertBack(converted.c[i], root.children[i]);
         }
     },
 
-    runOnConverted(root) {
+    runOnConverted(root: Tree) {
         layout(root);
     },
 };

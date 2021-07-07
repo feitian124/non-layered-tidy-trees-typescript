@@ -5,12 +5,17 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "jest --config jestconfig.json",
+    "test": "jest test",
     "build": "tsc",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "prepare": "husky install"
   },
-  "keywords": ["tree", "layout", "draw", "topology"],
+  "keywords": [
+    "tree",
+    "layout",
+    "draw",
+    "topology"
+  ],
   "author": "feitian124@gmail.com",
   "license": "ISC",
   "devDependencies": {
