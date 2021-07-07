@@ -158,6 +158,7 @@ function separate(tree: Tree, i: number, ih: IYL) {
 
         const sy = bottom(sr);
         const cy = bottom(cl);
+        // Advance highest node(s) and sum(s) of modifiers (Coordinate system increases downwards)
         if (sy <= cy) {
             sr = nextRightContour(sr);
             if (sr !== null) {
@@ -177,6 +178,7 @@ function separate(tree: Tree, i: number, ih: IYL) {
     if (sr === null && cl !== null) {
         setLeftThread(tree, i, cl, mscl);
     } else if (sr !== null && cl === null) {
+        // In this case, the left siblings must be taller than the current subtree.
         setRightThread(tree, i, sr, mssr);
     }
 }
