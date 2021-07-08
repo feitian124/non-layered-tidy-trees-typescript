@@ -1,4 +1,5 @@
-import { Tree, layout } from './algorithm';
+import layout from './algorithm';
+import Tree from './tree';
 import TreeNode from './treenode';
 
 export default {

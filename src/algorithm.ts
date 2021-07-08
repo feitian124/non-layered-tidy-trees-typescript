@@ -2,48 +2,20 @@
  * "Drawing Non-layered Tidy Trees in Linear Time" by Atze van der Ploeg
  * Accepted for publication in Software: Practice and Experience, to Appear.
  */
+import Tree from './tree';
 
-class Tree {
-    w: number; //width
-    h: number; //height
-    x: number; // x coordinates
-    y: number; // y coordinates
-    c: Tree[]; // children
-    cs: number; // number of children
-    prelim: number;
-    mod: number;
-    shift: number;
-    change: number;
-    tl?: Tree; // Left and right thread
-    tr?: Tree;
-    el: Tree; // Extreme left and right nodes
-    er: Tree;
-    msel: number; // Sum of modifiers at the extreme nodes
-    mser: number;
+/**
+ * A linked list of the indexes of left siblings and their lowest vertical coordinate.
+ */
+class IYL {
+    lowY: number;
+    index: number;
+    next?: IYL;
 
-    constructor(width: number, height: number, y: number, children: Tree[]) {
-        this.w = width;
-        this.h = height;
-        this.y = y;
-        this.c = children;
-        this.cs = children.length;
-
-        this.x = 0;
-        this.prelim = 0;
-        this.mod = 0;
-        this.shift = 0;
-        this.change = 0;
-
-        if (this.cs === 0) {
-            this.el = this;
-            this.er = this;
-            this.msel = this.mser = 0;
-        } else {
-            this.el = this.c[0].el;
-            this.msel = this.c[0].msel;
-            this.er = this.c[this.cs - 1].er;
-            this.mser = this.c[this.cs - 1].mser;
-        }
+    constructor(lowY: number, index: number, next?: IYL) {
+        this.lowY = lowY;
+        this.index = index;
+        this.next = next;
     }
 }
 
@@ -62,21 +34,6 @@ function setExtremes(tree: Tree) {
 
 function bottom(tree: Tree) {
     return tree.y + tree.h;
-}
-
-/**
- * A linked list of the indexes of left siblings and their lowest vertical coordinate.
- */
-class IYL {
-    lowY: number;
-    index: number;
-    next?: IYL;
-
-    constructor(lowY: number, index: number, next?: IYL) {
-        this.lowY = lowY;
-        this.index = index;
-        this.next = next;
-    }
 }
 
 function updateIYL(minY: number, i: number, ih?: IYL) {
@@ -235,9 +192,7 @@ function secondWalk(tree: Tree, modsum: number) {
     }
 }
 
-function layout(tree: Tree) {
+export default function layout(tree: Tree) {
     firstWalk(tree);
     secondWalk(tree, 0);
 }
-
-export { Tree, layout };
